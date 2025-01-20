@@ -34,7 +34,7 @@ require (
 	github.com/moby/buildkit v0.10.3
 	github.com/open-policy-agent/opa v0.41.0 // indirect
 	github.com/opencontainers/go-digest v1.0.0
-	github.com/opencontainers/image-spec v1.0.3-0.20220303224323-02efb9a75ee1
+	github.com/opencontainers/image-spec v1.1.0
 	github.com/samber/lo v1.21.0
 	github.com/saracen/walker v0.0.0-20191201085201-324a081bae7e
 	github.com/sosedoff/gitkit v0.3.0
