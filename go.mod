@@ -30,7 +30,7 @@ require (
 	github.com/knqyf263/go-rpmdb v0.0.0-20220607073645-842f01763e21
 	github.com/knqyf263/nested v0.0.1
 	github.com/kylelemons/godebug v1.1.0
-	github.com/liamg/memoryfs v1.4.2
+	github.com/liamg/memoryfs v1.6.0
 	github.com/moby/buildkit v0.10.3
 	github.com/open-policy-agent/opa v0.41.0 // indirect
 	github.com/opencontainers/go-digest v1.0.0
