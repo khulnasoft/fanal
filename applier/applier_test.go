@@ -48,7 +48,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						BlobInfo: types.BlobInfo{
 							SchemaVersion: 1,
 							Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							OS: &types.OS{
 								Family: "debian",
 								Name:   "9.9",
@@ -155,7 +155,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name: "tzdata", Version: "2019a-0+deb9u1", SrcName: "tzdata", SrcVersion: "2019a-0+deb9u1",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 					},
 				},
@@ -201,7 +201,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 					Returns: cache.LocalArtifactCacheGetBlobReturns{
 						BlobInfo: types.BlobInfo{
 							SchemaVersion: 1,
-							Digest:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							Digest:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							DiffID:        "sha256:531743b7098cb2aaf615641007a129173f63ed86ca32fe7b5a246a1c47286028",
 							OS: &types.OS{
 								Family: "alpine",
@@ -255,7 +255,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name:    "busybox",
 						Version: "1.30.1-r3",
 						Layer: types.Layer{
-							Digest: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							Digest: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							DiffID: "sha256:531743b7098cb2aaf615641007a129173f63ed86ca32fe7b5a246a1c47286028",
 						},
 					},
@@ -263,7 +263,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name:    "libcrypto1.1",
 						Version: "1.1.1d-r2",
 						Layer: types.Layer{
-							Digest: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							Digest: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							DiffID: "sha256:531743b7098cb2aaf615641007a129173f63ed86ca32fe7b5a246a1c47286028",
 						},
 					},
@@ -271,7 +271,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name:    "libssl1.1",
 						Version: "1.1.1d-r2",
 						Layer: types.Layer{
-							Digest: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							Digest: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							DiffID: "sha256:531743b7098cb2aaf615641007a129173f63ed86ca32fe7b5a246a1c47286028",
 						},
 					},
@@ -279,7 +279,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name:    "musl",
 						Version: "1.1.22-r3",
 						Layer: types.Layer{
-							Digest: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							Digest: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							DiffID: "sha256:531743b7098cb2aaf615641007a129173f63ed86ca32fe7b5a246a1c47286028",
 						},
 					},
@@ -287,7 +287,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name:    "openssl",
 						Version: "1.1.1d-r2",
 						Layer: types.Layer{
-							Digest: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							Digest: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							DiffID: "sha256:531743b7098cb2aaf615641007a129173f63ed86ca32fe7b5a246a1c47286028",
 						},
 					},
@@ -357,7 +357,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						BlobInfo: types.BlobInfo{
 							SchemaVersion: 1,
 							Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							PackageInfos: []types.PackageInfo{
 								{
 									FilePath: "var/lib/dpkg/status.d/tzdata",
@@ -444,7 +444,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name: "tzdata", Version: "2019a-0+deb9u1", SrcName: "tzdata", SrcVersion: "2019a-0+deb9u1",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 					},
 				},
@@ -524,7 +524,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						BlobInfo: types.BlobInfo{
 							SchemaVersion: 1,
 							Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 							PackageInfos: []types.PackageInfo{
 								{
 									FilePath: "var/lib/dpkg/status.d/tzdata",
@@ -608,7 +608,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						Name: "tzdata", Version: "2019a-0+deb9u1", SrcName: "tzdata", SrcVersion: "2019a-0+deb9u1",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 					},
 				},
@@ -653,7 +653,7 @@ func TestApplier_ApplyLayers(t *testing.T) {
 						FilePath: "var/lib/dpkg/status.d/tzdata",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 						Data: dummyData{
 							data: "Common Package type-A var/lib/dpkg/status.d/tzdata",

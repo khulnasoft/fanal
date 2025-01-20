@@ -48,7 +48,7 @@ func Test_image_ConfigName(t *testing.T) {
 			imageName: "alpine:3.11",
 			want: v1.Hash{
 				Algorithm: "sha256",
-				Hex:       "a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+				Hex:       "a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 			},
 			wantErr: false,
 		},
@@ -81,7 +81,7 @@ func Test_image_ConfigFile(t *testing.T) {
 			imageName: "alpine:3.11",
 			want: &v1.ConfigFile{
 				Architecture:  "amd64",
-				Container:     "fb71ddde5f6411a82eb056a9190f0cc1c80d7f77a8509ee90a2054428edb0024",
+				Container:     "9a36cae78f6934ef1807fa6d7fbe783ef8ef7c719438a53c5ce3d6cabd0ad551",
 				OS:            "linux",
 				Created:       v1.Time{Time: time.Date(2020, 3, 23, 21, 19, 34, 196162891, time.UTC)},
 				DockerVersion: "18.09.7",

@@ -163,14 +163,14 @@ func TestArtifact_Inspect(t *testing.T) {
 				ID:      "sha256:059741cfbdc039e88e337d621e57e03e99b0e0a75df32f2027ebef13f839af65",
 				BlobIDs: []string{"sha256:941d910c2c0d28cfcde0402115ff796b020a1fc9322934fac6d49aa4348b0c61"},
 				ImageMetadata: types.ImageMetadata{
-					ID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					ID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					DiffIDs: []string{
 						"sha256:beee9f30bc1f711043e78d4a2be0668955d4b761d587d6f60c2c8dc081efb203",
 					},
 					ConfigFile: v1.ConfigFile{
 						Architecture:  "amd64",
 						Author:        "",
-						Container:     "fb71ddde5f6411a82eb056a9190f0cc1c80d7f77a8509ee90a2054428edb0024",
+						Container:     "9a36cae78f6934ef1807fa6d7fbe783ef8ef7c719438a53c5ce3d6cabd0ad551",
 						Created:       v1.Time{Time: time.Date(2020, 3, 23, 21, 19, 34, 196162891, time.UTC)},
 						DockerVersion: "18.09.7",
 						History: []v1.History{

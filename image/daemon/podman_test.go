@@ -58,7 +58,7 @@ func TestPodmanImage(t *testing.T) {
 		{
 			name:           "happy path",
 			imageName:      "alpine:3.11",
-			wantConfigName: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+			wantConfigName: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 			wantErr:        false,
 		},
 		{

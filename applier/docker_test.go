@@ -22,7 +22,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					OS: &types.OS{
 						Family: "alpine",
 						Name:   "3.10",
@@ -99,7 +99,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					PackageInfos: []types.PackageInfo{
 						{
 							FilePath: "lib/apk/db/installed",
@@ -144,7 +144,7 @@ func TestApplyLayers(t *testing.T) {
 						Release: "4.5.8",
 						Layer: types.Layer{
 							Digest: "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 					},
 					{
@@ -153,7 +153,7 @@ func TestApplyLayers(t *testing.T) {
 						Release: "4.5.6",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 					},
 				},
@@ -167,7 +167,7 @@ func TestApplyLayers(t *testing.T) {
 								FilePath: "var/lib/gems/2.5.0/specifications/activesupport-6.0.2.1.gemspec",
 								Layer: types.Layer{
 									Digest: "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
-									DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+									DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 								},
 							},
 							{
@@ -176,7 +176,7 @@ func TestApplyLayers(t *testing.T) {
 								FilePath: "usr/local/bundle/specifications/gon-6.3.2.gemspec",
 								Layer: types.Layer{
 									Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-									DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+									DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 								},
 							},
 						},
@@ -190,7 +190,7 @@ func TestApplyLayers(t *testing.T) {
 								Version: "1.2.3",
 								Layer: types.Layer{
 									Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-									DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+									DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 								},
 							},
 						},
@@ -204,7 +204,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					OS: &types.OS{
 						Family: "alpine",
 						Name:   "3.10",
@@ -298,7 +298,7 @@ func TestApplyLayers(t *testing.T) {
 								Version: "4.0.0",
 								Layer: types.Layer{
 									Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-									DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+									DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 								},
 							},
 							{
@@ -367,7 +367,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					PackageInfos: []types.PackageInfo{
 						{
 							FilePath: "var/lib/dpkg/status.d/libc",
@@ -395,7 +395,7 @@ func TestApplyLayers(t *testing.T) {
 						Release: "4.5.7",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 					},
 					{
@@ -433,7 +433,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					OpaqueDirs:    []string{"app/"},
 				},
 			},
@@ -466,7 +466,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					BuildInfo: &types.BuildInfo{
 						ContentSets: []string{
 							"rhel-8-for-x86_64-baseos-rpms",
@@ -503,7 +503,7 @@ func TestApplyLayers(t *testing.T) {
 				{
 					SchemaVersion: 1,
 					Digest:        "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
-					DiffID:        "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+					DiffID:        "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 					PackageInfos: []types.PackageInfo{
 						{
 							FilePath: "var/lib/rpm/Packages",
@@ -540,7 +540,7 @@ func TestApplyLayers(t *testing.T) {
 						Release: "8",
 						Layer: types.Layer{
 							Digest: "sha256:a3ed95caeb02ffe68cdd9fd84406680ae93d633cb16422d00e8a7c22955b46d4",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 						BuildInfo: &types.BuildInfo{
 							Nvr:  "3scale-amp-apicast-gateway-container-1.11-1",
@@ -553,7 +553,7 @@ func TestApplyLayers(t *testing.T) {
 						Release: "5",
 						Layer: types.Layer{
 							Digest: "sha256:932da51564135c98a49a34a193d6cd363d8fa4184d957fde16c9d8527b3f3b02",
-							DiffID: "sha256:a187dde48cd289ac374ad8539930628314bc581a481cdb41409c9289419ddb72",
+							DiffID: "sha256:a787cb9865032e5b5a407ecdf34b57a23a4a076aaa043d71742ddb6726ec9229",
 						},
 						BuildInfo: &types.BuildInfo{
 							ContentSets: []string{
