@@ -1,0 +1,370 @@
+basePath: /api/v1
+consumes:
+- application/json
+definitions:
+  configuration.Configuration:
+    properties:
+      credentials:
+        type: string
+      dev-mode:
+        type: boolean
+      disable-auth:
+        type: boolean
+      listen-address:
+        description: DisplayMode   string `json:"display-mode"`
+        type: string
+      listen-port:
+        type: integer
+      log-level:
+        type: string
+      redis-password:
+        type: string
+      redis-server:
+        type: string
+      ttl:
+        type: integer
+    type: object
+  configuration.VersionInfo:
+    properties:
+      buildDate:
+        type: string
+      compiler:
+        type: string
+      gitCommit:
+        type: string
+      gitTreeState:
+        type: string
+      gitVersion:
+        type: string
+      goVersion:
+        type: string
+      platform:
+        type: string
+    type: object
+  models.Event:
+    properties:
+      hostname:
+        type: string
+      output:
+        type: string
+      output_fields:
+        additionalProperties: true
+        type: object
+      priority:
+        type: string
+      rule:
+        type: string
+      source:
+        type: string
+      tags:
+        items:
+          type: string
+        type: array
+      time:
+        type: string
+      uuid:
+        type: string
+    required:
+    - output
+    - priority
+    - rule
+    - time
+    type: object
+  models.Payload:
+    properties:
+      event:
+        $ref: '#/definitions/models.Event'
+      outputs:
+        items:
+          type: string
+        type: array
+    required:
+    - event
+    - outputs
+    type: object
+  models.ResultsCount:
+    properties:
+      statistics:
+        $ref: '#/definitions/models.Statistics'
+    type: object
+  models.ResultsCountBy:
+    properties:
+      results:
+        additionalProperties:
+          type: integer
+        type: object
+      statistics:
+        $ref: '#/definitions/models.Statistics'
+    type: object
+  models.ResultsSearch:
+    properties:
+      results:
+        additionalProperties:
+          $ref: '#/definitions/models.Event'
+        type: object
+      statistics:
+        $ref: '#/definitions/models.Statistics'
+    type: object
+  models.Statistics:
+    properties:
+      all:
+        type: integer
+      distincts:
+        type: integer
+      returned:
+        type: integer
+    type: object
+host: <your-domain>:2802
+info:
+  contact:
+    email: cncf-fanal-dev@lists.cncf.io
+    name: KhulnaSoft Authors
+    url: https://github.com/khulnasoft
+  description: Fanal UI
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Fanal UI
+  version: "1.0"
+paths:
+  /api/v1/:
+    post:
+      consumes:
+      - application/json
+      description: Add Event
+      parameters:
+      - description: Payload
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/models.Payload'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Add Event
+  /api/v1/authenticate:
+    post:
+      description: Authenticate
+      responses:
+        "200":
+          description: authenticated
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Authenticate
+  /api/v1/configuration:
+    get:
+      description: Configuration
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Configuration
+          schema:
+            $ref: '#/definitions/configuration.Configuration'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Configuration
+  /api/v1/events/count:
+    get:
+      description: Count Events
+      parameters:
+      - description: pretty
+        in: query
+        name: pretty
+        type: boolean
+      - description: priority
+        in: query
+        name: priority
+        type: string
+      - description: source
+        in: query
+        name: source
+        type: string
+      - description: filter
+        in: query
+        name: filter
+        type: string
+      - description: rule
+        in: query
+        name: rule
+        type: string
+      - description: tags
+        in: query
+        name: tags
+        type: string
+      - description: since
+        in: query
+        name: since
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Count Events Result
+          schema:
+            $ref: '#/definitions/models.ResultsCount'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Count Events
+  /api/v1/events/count/:groupby:
+    get:
+      description: Count Events By
+      parameters:
+      - description: group By
+        in: path
+        name: groupby
+        required: true
+        type: string
+      - description: pretty
+        in: query
+        name: pretty
+        type: boolean
+      - description: priority
+        in: query
+        name: priority
+        type: string
+      - description: source
+        in: query
+        name: source
+        type: string
+      - description: filter
+        in: query
+        name: filter
+        type: string
+      - description: rule
+        in: query
+        name: rule
+        type: string
+      - description: tags
+        in: query
+        name: tags
+        type: string
+      - description: since
+        in: query
+        name: since
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Count Events By Result
+          schema:
+            $ref: '#/definitions/models.ResultsCountBy'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Count Events By
+  /api/v1/events/search:
+    get:
+      description: Search Events
+      parameters:
+      - description: pretty
+        in: query
+        name: pretty
+        type: boolean
+      - description: priority
+        in: query
+        name: priority
+        type: string
+      - description: source
+        in: query
+        name: source
+        type: string
+      - description: filter
+        in: query
+        name: filter
+        type: string
+      - description: rule
+        in: query
+        name: rule
+        type: string
+      - description: tags
+        in: query
+        name: tags
+        type: string
+      - description: since
+        in: query
+        name: since
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Search Events Result
+          schema:
+            $ref: '#/definitions/models.ResultsSearch'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+      summary: Search Events
+  /api/v1/healthz:
+    get:
+      description: Healthcheck
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: '{\"ok\"}'
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Healthcheck
+  /api/v1/outputs:
+    get:
+      description: Healthcheck
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Outputs
+          schema:
+            items:
+              type: string
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: List Outputs
+  /api/v1/version:
+    get:
+      description: Version
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Version
+          schema:
+            $ref: '#/definitions/configuration.VersionInfo'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Version
+produces:
+- application/json
+schemes:
+- http
+swagger: "2.0"

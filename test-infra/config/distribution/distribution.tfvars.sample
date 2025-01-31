@@ -1,0 +1,5 @@
+bucket_name                = "fanal-distribution"
+region                     = "eu-west-1"
+distribution_origin_id     = "fanalDistributionOrigin"
+logging_bucket_name        = "logging-fanal-distribution"
+distribution_name_alias    = "download.khulnasoft.com"

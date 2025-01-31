@@ -1,0 +1,978 @@
+orgs:
+  khulnasoft:
+    name: Fanal
+    description: Fanal is Container Native Runtime Security
+
+    default_repository_permission: read
+    has_organization_projects: true
+    has_repository_projects: true
+    members_can_create_repositories: false
+
+    admins:
+      - caniszczyk
+      - ldegio
+      - leogr
+      - mstemm
+      - poiana
+      - thelinuxfoundation
+      - jasondellaluce
+      - LucaGuerra
+      - FedeDP
+
+    members:
+      - admiral0
+      - ahmedameenaim
+      - alacuku
+      - Andreagit97
+      - araujof
+      - bencer
+      - cpanato
+      - cappellinsamuele
+      - darryk10
+      - deepskyblue86
+      - dwindsor
+      - ewilderj
+      - EXONER4TED
+      - fjogeleit
+      - gnosek
+      - hbrueckner
+      - hmadison
+      - IgorEulalio
+      - incertum
+      - Issif
+      - jonahjon
+      - Kaizhe
+      - krisnova
+      - leodido
+      - loresuso
+      - Lowaiz
+      - maxgio92
+      - mfdii
+      - mmat11
+      - mrgian
+      - Molter73
+      - rabbitstack
+      - rohith-raju
+      - sboschman
+      - scraly
+      - sgaist
+      - terylt
+      - therealbobo
+      - vjjmiras
+      - zuc
+
+    repos:
+      .github:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Default community health files
+        has_projects: false
+        has_wiki: false
+      advocacy:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: Advocacy machinery
+        has_projects: true
+      charts:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Community managed Helm charts for running Fanal with Kubernetes
+        has_projects: true
+        has_wiki: false
+      client-go:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Go client and SDK for Fanal
+        has_projects: true
+      client-py:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: Python client and SDK for Fanal
+        has_projects: true
+        has_wiki: false
+      client-rs:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: The rust language implementation of the Fanal client
+        has_projects: true
+      cncf-green-review-testing:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Fanal configurations intended for testing with the CNCF Green Reviews Working Group
+        has_projects: true
+        has_wiki: false
+      community:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: The Fanal Project Community
+        has_projects: true
+        has_wiki: false
+      contrib:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Community sandbox to test-drive ideas/projects/code
+        has_projects: true
+        has_wiki: false
+      dbg-go:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: "A go tool to work with khulnasoft drivers build grid"
+        has_projects: true
+      deploy-kubernetes:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Kubernetes deployment resources for Fanal
+        has_projects: false
+        has_wiki: false
+      driverkit:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: "Kit for building Fanal drivers: kernel modules or eBPF probes"
+        has_projects: true
+      ebpf-probe:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: eBPF probe for syscall events
+        has_projects: true
+      elftoolchain:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: "Local version of https://sourceforge.net/projects/elftoolchain/"
+        has_projects: true
+      event-generator:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description:
+          Generate a variety of suspect actions that are detected by Fanal
+          rulesets
+        has_projects: true
+      evolution:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Evolution process of The Fanal Project
+        has_projects: true
+        has_wiki: false
+      fanal:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Cloud Native Runtime Security
+        has_projects: true
+        has_wiki: false
+        homepage: https://khulnasoft.com
+      fanal-actions:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Run Fanal in a GitHub Actions to detect suspicious behavior in your CI/CD
+        has_projects: true
+        has_wiki: false
+      fanal-aws-terraform:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Terraform Module for KhulnaSoft AWS Resources
+        default_branch: main
+        has_projects: true
+      fanal-exporter:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Prometheus Metrics Exporter for Fanal output events
+        has_projects: true
+      fanal-website:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Source code of the official Fanal website
+        has_projects: true
+        homepage: https://khulnasoft.com
+      flycheck-fanal-rules:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal Rules Syntax Checker for Emacs, Using Flycheck
+        default_branch: main
+        has_projects: true
+      fanalctl:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Administrative tooling for Fanal
+        has_projects: true
+        has_wiki: false
+      fanal-playground:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Web-application used to validate Fanal rules and test against scap file
+        has_projects: true
+        has_wiki: false
+      fanal-rustlings:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Small exercises to get you used to writing Fanal plugins in Rust 🦀
+        has_projects: true
+        has_wiki: false
+      fanal-talon:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Response Engine for managing threats in your Kubernetes
+        has_projects: true
+        has_wiki: false
+      fanal:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Connect Fanal to your ecosystem
+        has_projects: true
+        has_wiki: false
+      fanal-ui:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: A simple WebUI with latest events from Fanal
+        has_projects: true
+        has_wiki: false
+      k8s-metacollector:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Fetches the metadata from kubernetes API server and dispatches them to Fanal instances
+        has_projects: true
+        has_wiki: false
+      kernel-crawler:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: A tool to crawl Linux kernel versions
+        has_projects: false
+        has_wiki: false
+      kernel-testing:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Ansible playbooks to provision firecracker VMs and run Fanal kernel tests
+        has_projects: true
+        has_wiki: false
+      kernel-module:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        has_projects: true
+      kilt:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: Kilt is a project that defines how to inject foreign apps into containers
+        has_projects: true
+        has_wiki: false
+      libs:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description:
+          libsinsp, libscap, the kernel module driver, and the eBPF driver
+          sources
+        has_projects: true
+        has_wiki: false
+      libs-sdk-go:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Go SDK for Fanal libs
+        has_projects: true
+        has_wiki: false
+      libscap:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        has_projects: true
+      libsinsp:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: "System inspection library "
+        has_projects: true
+      pdig:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: ptrace-based event producer for udig
+        has_projects: true
+        has_wiki: false
+      peribolos-syncer:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Tool to synchronize Peribolos configuration with GitHub people sources of truth.
+        has_projects: true
+        has_wiki: false
+      pigeon:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: Secrets and config manager for Fanal's infrastructure
+        has_projects: true
+        has_wiki: false
+      plugin-sdk-cpp:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal plugins SDK for C++
+        has_projects: true
+      plugin-sdk-go:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal plugins SDK for Go
+        default_branch: main
+        has_projects: true
+      plugin-sdk-rs:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal plugins SDK for Rust
+        default_branch: main
+        has_projects: true
+      plugins:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal plugins registry
+        has_projects: true
+      rules:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal rule repository
+        has_projects: false
+        has_wiki: false
+      syscalls-bumper:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: A tool to automatically update supported syscalls in libs
+        has_projects: false
+        has_wiki: false
+      template-repository:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        archived: true
+        description: Acts as a template for new repositories
+        has_projects: true
+      test-infra:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        description: Fanal workflow & testing infrastructure
+        has_projects: true
+        has_wiki: false
+        homepage: https://prow.khulnasoft.com
+      testing:
+        allow_merge_commit: false
+        allow_rebase_merge: true
+        allow_squash_merge: false
+        default_branch: main
+        description: All-purpose test suite for Fanal and its ecosystem
+        has_projects: true
+        has_wiki: false
+
+    teams:
+      admins:
+        description: admins of the org
+        maintainers:
+          - caniszczyk
+          - ldegio
+          - leogr
+          - thelinuxfoundation
+          - mstemm
+        privacy: closed
+        repos:
+          advocacy: admin
+      charts-maintainers:
+        description: maintainers of khulnasoft/charts
+        maintainers:
+          - leogr
+        members:
+          - cpanato
+          - Issif
+          - alacuku
+        privacy: closed
+        repos:
+          charts: maintain
+      client-go-maintainers:
+        description: maintainers of khulnasoft/client-go
+        maintainers:
+          - leogr
+        members:
+          - leodido
+        privacy: closed
+        repos:
+          client-go: maintain
+      client-py-maintainers:
+        description: maintainers of khulnasoft/client-py
+        members:
+          - leodido
+          - mmat11
+        privacy: closed
+        repos:
+          client-py: maintain
+      client-rs-maintainers:
+        description: maintainers of khulnasoft/client-rs
+        members:
+          - leodido
+        privacy: closed
+        repos:
+          client-rs: maintain
+      cncf-green-review-testing-maintainers:
+        description: maintainers of khulnasoft/cncf-green-review-testing
+        maintainers:
+          - incertum
+          - leogr
+          - LucaGuerra
+          - maxgio92
+        members: []
+        privacy: closed
+        repos:
+          cncf-green-review-testing: maintain
+      community-maintainers:
+        description: maintainers of khulnasoft/community
+        maintainers:
+          - leogr
+        members:
+          - Issif
+          - araujof
+          - maxgio92
+          - terylt
+          - Andreagit97
+        privacy: closed
+        repos:
+          community: maintain
+      contrib-maintainers:
+        description: maintainers of khulnasoft/contrib
+        maintainers:
+          - leogr
+        members:
+          - maxgio92
+          - jasondellaluce
+        privacy: closed
+        repos:
+          contrib: maintain
+      core-maintainers:
+        description: Core maintainers of The Fanal Project
+        maintainers:
+          - leogr
+          - mstemm
+        members:
+          - gnosek
+          - cpanato
+          - Issif
+          - FedeDP
+          - maxgio92
+          - zuc
+          - jasondellaluce
+          - Molter73
+          - LucaGuerra
+          - Andreagit97
+          - incertum
+          - alacuku
+          - loresuso
+        privacy: closed
+      dbg-go-maintainers:
+        description: maintainers of khulnasoft/dbg-go
+        maintainers:
+          - leogr
+        members:
+          - FedeDP
+          - maxgio92
+        privacy: closed
+        repos:
+          dbg-go: maintain
+      deploy-kubernetes-maintainers:
+        description: maintainers of khulnasoft/deploy-kubernetes
+        maintainers:
+          - leogr
+        members:
+          - maxgio92
+          - zuc
+          - jasondellaluce
+        privacy: closed
+        repos:
+          deploy-kubernetes: maintain
+      driverkit-maintainers:
+        description: maintainers of khulnasoft/driverkit
+        members:
+          - leodido
+          - dwindsor
+          - FedeDP
+          - EXONER4TED
+          - Lowaiz
+        privacy: closed
+        repos:
+          driverkit: maintain
+      elftoolchain-maintainers:
+        description: maintainers of khulnasoft/elftoolchain
+        maintainers:
+          - leogr
+          - mstemm
+          - jasondellaluce
+        members:
+          - gnosek
+          - FedeDP
+          - Molter73
+          - LucaGuerra
+          - Andreagit97
+          - hbrueckner
+          - incertum
+        privacy: closed
+        repos:
+          elftoolchain: maintain
+      event-generator-maintainers:
+        description: maintainers of khulnasoft/event-generator
+        maintainers:
+          - leogr
+        members:
+          - FedeDP
+          - alacuku
+        privacy: closed
+        repos:
+          event-generator: maintain
+      evolution-maintainers:
+        description: maintainers of khulnasoft/evolution
+        maintainers:
+          - leogr
+        members:
+          - maxgio92
+          - jasondellaluce
+        privacy: closed
+        repos:
+          evolution: maintain
+      fanal-actions-maintainers:
+        description: maintainers of khulnasoft/fanal-actions
+        maintainers:
+          - darryk10
+          - loresuso
+          - leogr
+          - cpanato
+        members: []
+        privacy: closed
+        repos:
+          fanal-actions: maintain
+      fanal-aws-terraform-maintainers:
+        description: maintainers of khulnasoft/fanal-aws-terraform
+        maintainers:
+          - ldegio
+          - leogr
+          - mstemm
+        members:
+          - zuc
+          - jasondellaluce
+        privacy: closed
+        repos:
+          fanal-aws-terraform: maintain
+      fanal-exporter-maintainers:
+        description: maintainers of khulnasoft/fanal-exporter
+        maintainers:
+          - leogr
+        members:
+          - jasondellaluce
+        privacy: closed
+        repos:
+          fanal-exporter: maintain
+      fanal-maintainers:
+        description: maintainers of khulnasoft/fanal
+        maintainers:
+          - leogr
+          - mstemm
+        members:
+          - FedeDP
+          - jasondellaluce
+          - Andreagit97
+          - incertum
+          - LucaGuerra
+          - sgaist
+        privacy: closed
+        repos:
+          fanal: maintain
+      fanal-website-maintainers:
+        description: maintainers of khulnasoft/fanal-website
+        maintainers:
+          - leogr
+        members:
+          - Issif
+          - jasondellaluce
+          - vjjmiras
+          - LucaGuerra
+        privacy: closed
+        repos:
+          fanal-website: maintain
+      flycheck-fanal-rules-maintainers:
+        description: maintainers of khulnasoft/flycheck-fanal-rules
+        maintainers:
+          - mstemm
+          - ewilderj
+        members:
+        privacy: closed
+        repos:
+          flycheck-fanal-rules: maintain
+      fanalctl-maintainers:
+        description: maintainers of khulnasoft/fanalctl
+        maintainers:
+          - leogr
+        members:
+          - zuc
+          - maxgio92
+          - fededp
+          - cpanato
+          - alacuku
+          - loresuso
+        privacy: closed
+        repos:
+          fanalctl: maintain
+      fanal-playground-maintainers:
+        description: maintainers of khulnasoft/fanal-playground
+        maintainers:
+          - rohith-raju
+          - jasondellaluce
+          - leogr
+        members: []
+        privacy: closed
+        repos:
+          fanal-playground: maintain
+      fanal-rustlings-maintainers:
+        description: maintainers of khulnasoft/fanal-rustlings
+        maintainers:
+          - LucaGuerra
+          - deepskyblue86
+          - gnosek
+          - rabbitstack
+        members: []
+        privacy: closed
+        repos:
+          fanal-rustlings: maintain
+      fanal-talon-maintainers:
+        description: maintainers of khulnasoft/fanal-talon
+        maintainers:
+          - Issif
+          - IgorEulalio
+          - leogr
+          - cpanato
+        members: []
+        privacy: closed
+        repos:
+          fanal-talon: maintain
+      fanal-maintainers:
+        description: maintainers of khulnasoft/fanal
+        maintainers:
+          - leogr
+        members:
+          - cpanato
+          - Issif
+          - fjogeleit
+        privacy: closed
+        repos:
+          fanal: maintain
+      fanal-ui-maintainers:
+        description: maintainers of khulnasoft/fanal-ui
+        members:
+          - cpanato
+          - Issif
+          - fjogeleit
+        privacy: closed
+        repos:
+          fanal-ui: maintain
+      github-maintainers:
+        description: maintainers of khulnasoft/.github
+        maintainers:
+          - leogr
+        members:
+          - maxgio92
+          - jasondellaluce
+        privacy: closed
+        repos:
+          .github: maintain
+      k8s-metacollector-maintainers:
+        description: maintainers of khulnasoft/k8s-metacollector
+        maintainers:
+          - alacuku
+          - andreagit97
+          - leogr
+          - Issif
+        members: []
+        privacy: closed
+        repos:
+          k8s-metacollector: maintain
+      kernel-crawler-maintainers:
+        description: maintainers of khulnasoft/kernel-crawler
+        maintainers:
+          - leogr
+          - FedeDP
+          - maxgio92
+          - zuc
+          - EXONER4TED
+        members: []
+        privacy: closed
+        repos:
+          kernel-crawler: maintain
+      kernel-testing-maintainers:
+        description: maintainers of khulnasoft/kernel-testing
+        maintainers:
+          - alacuku
+          - Andreagit97
+          - FedeDP
+          - therealbobo
+        members: []
+        privacy: closed
+        repos:
+          kernel-testing: maintain
+      kilt-maintainers:
+        description: maintainers of khulnasoft/kilt
+        members:
+          - gnosek
+          - leodido
+          - admiral0
+        privacy: closed
+        repos:
+          kilt: maintain
+      libs-maintainers:
+        description: maintainers of khulnasoft/libs
+        maintainers:
+          - leogr
+          - mstemm
+          - jasondellaluce
+        members:
+          - gnosek
+          - FedeDP
+          - Molter73
+          - LucaGuerra
+          - Andreagit97
+          - hbrueckner
+          - incertum
+        privacy: closed
+        repos:
+          libs: maintain
+      libs-sdk-go-maintainers:
+        description: maintainers of khulnasoft/libs-sdk-go
+        maintainers:
+          - leogr
+        members:
+          - araujof
+          - jasondellaluce
+          - terylt
+          - Andreagit97
+        privacy: closed
+        repos:
+          libs-sdk-go: maintain
+      machine_users:
+        description: bots
+        maintainers:
+          - poiana
+        privacy: closed
+        repos:
+          .github: admin
+          charts: admin
+          client-go: admin
+          cncf-green-review-testing: admin
+          community: admin
+          contrib: admin
+          dbg-go: admin
+          deploy-kubernetes: admin
+          driverkit: admin
+          elftoolchain: admin
+          event-generator: admin
+          evolution: admin
+          fanal: admin
+          fanal-actions: admin
+          fanal-aws-terraform: admin
+          fanal-exporter: admin
+          fanal-playground: admin
+          fanal-rustlings: admin
+          fanal-talon: admin
+          fanal-website: admin
+          fanalctl: admin
+          fanal: admin
+          fanal-ui: admin
+          flycheck-fanal-rules: admin
+          k8s-metacollector: admin
+          kernel-crawler: admin
+          kernel-testing: admin
+          libs: admin
+          libs-sdk-go: admin
+          peribolos-syncer: admin
+          pigeon: admin
+          plugin-sdk-cpp: admin
+          plugin-sdk-go: admin
+          plugin-sdk-rs: admin
+          plugins: admin
+          rules: admin
+          syscalls-bumper: admin
+          test-infra: admin
+          testing: admin
+      pdig-maintainers:
+        description: maintainers of khulnasoft/pdig
+        maintainers:
+          - ldegio
+        members:
+          - gnosek
+          - leodido
+        privacy: closed
+        repos:
+          pdig: maintain
+      peribolos-syncer-maintainers:
+        description: maintainers of khulnasoft/perperibolos-syncer
+        maintainers:
+          - maxgio92
+          - leogr
+          - FedeDP
+        members: []
+        privacy: closed
+        repos:
+          peribolos-syncer: maintain
+      pigeon-maintainers:
+        description: maintainers of khulnasoft/pigeon
+        maintainers:
+          - jasondellaluce
+        members:
+          - cappellinsamuele
+          - fededp
+        privacy: closed
+        repos:
+          pigeon: maintain
+      plugin-sdk-cpp-maintainers:
+        description: maintainers of khulnasoft/plugin-sdk-cpp
+        maintainers:
+          - ldegio
+          - leogr
+          - mstemm
+        members:
+          - leodido
+          - FedeDP
+        privacy: closed
+        repos:
+          plugin-sdk-cpp: maintain
+      plugin-sdk-go-maintainers:
+        description: maintainers of khulnasoft/plugin-sdk-go
+        maintainers:
+          - leogr
+        members:
+          - jasondellaluce
+        privacy: closed
+        repos:
+          plugin-sdk-go: maintain
+      plugin-sdk-rs-maintainers:
+        description: maintainers of khulnasoft/plugin-sdk-rs
+        maintainers:
+          - gnosek
+          - andreagit97
+        members:
+          - mrgian
+        privacy: closed
+        repos:
+          plugin-sdk-rs: maintain
+      plugins-maintainers:
+        description: maintainers of khulnasoft/plugins
+        maintainers:
+          - leogr
+          - mstemm
+        members:
+          - jasondellaluce
+          - ahmedameenaim
+          - sboschman
+          - LucaGuerra
+        privacy: closed
+        repos:
+          plugins: maintain
+      rules-maintainers:
+        description: maintainers of khulnasoft/rules
+        maintainers:
+          - leogr
+          - LucaGuerra
+        members:
+          - fededp
+          - jasondellaluce
+          - andreagit97
+          - mstemm
+          - incertum
+          - darryk10
+        privacy: closed
+        repos:
+          rules: maintain
+      syscalls-bumper-maintainers:
+        description: maintainers of khulnasoft/syscalls-bumper
+        maintainers:
+          - leogr
+        members:
+          - FedeDP
+          - Andreagit97
+        privacy: closed
+        repos:
+          syscalls-bumper: maintain
+      test-infra-maintainers:
+        description: maintainers of khulnasoft/fanal/test-infra
+        maintainers:
+          - leogr
+        members:
+          - maxgio92
+          - zuc
+          - jonahjon
+          - fededp
+        privacy: closed
+        repos:
+          test-infra: maintain
+      testing-maintainers:
+        description: maintainers of khulnasoft/testing
+        maintainers:
+          - jasondellaluce
+          - leogr
+        members:
+          - andreagit97
+          - lucaguerra
+        privacy: closed
+        repos:
+          testing: maintain

@@ -1,0 +1,107 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: fanal
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    chart: fanal
+    repoURL: https://khulnasoft.github.io/charts
+    targetRevision: 4.19.0
+    helm:
+      releaseName: fanal
+      values: |
+        tolerations:
+          - key: "Availability"
+            operator: "Equal"
+            value: "SingleAZ"
+            effect: "NoSchedule"
+          - key: "Archtype"
+            operator: "Equal"
+            value: "arm"
+            effect: "NoSchedule"
+        metrics:
+          enabled: true
+          interval: 10s
+          includeEmptyValues: true
+        serviceMonitor:
+          create: true
+          labels:
+            release: "kube-prometheus-stack"
+        grafana:
+          dashboards:
+            enabled: true
+            configMaps:
+              fanal:
+                folder: "khulnasoft"
+        collectors:
+          kubernetes:
+            enabled: true
+        k8s-metacollector:
+          serviceMonitor:
+            create: true
+            labels:
+              release: "kube-prometheus-stack"
+          grafana:
+            dashboards:
+              enabled: true
+              configMaps:
+                collector:
+                  folder: "khulnasoft"
+        fanalctl:
+          artifact:
+            install:
+              # -- Enable the init container.
+              enabled: true
+            follow:
+              # -- Enable the sidecar container.
+              enabled: true
+          config:
+            artifact:
+              install:
+                refs: [fanal-rules:3, k8saudit-rules:0.7]
+              follow:
+                refs: [fanal-rules:3, k8saudit-rules:0.7]
+        services:
+          - name: k8saudit-webhook
+            type: NodePort
+            ports:
+              - port: 9765 # See plugin open_params
+                nodePort: 30007
+                protocol: TCP
+        tty: true
+        fanal:
+          rules_files:
+            - /etc/fanal/fanal_rules.yaml
+            - /etc/fanal/k8s_audit_rules.yaml
+            - /etc/fanal/rules.d
+          plugins:
+            - name: k8saudit
+              library_path: libk8saudit.so
+              init_config:
+                ""
+                # maxEventBytes: 1048576
+                # sslCertificate: /etc/fanal/fanal.pem
+              open_params: "http://:9765/k8s-audit"
+            - name: json
+              library_path: libjson.so
+              init_config: ""
+          load_plugins: [k8saudit, json]
+          append_output:
+            - match:
+                source: syscall
+              extra_output: >-
+                pod-uid=%k8smeta.pod.uid, pod-name=%k8smeta.pod.name,
+                namespace-name=%k8smeta.ns.name
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: fanal
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

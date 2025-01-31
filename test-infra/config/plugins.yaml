@@ -1,0 +1,1704 @@
+approve:
+  - repos:
+      - khulnasoft/.github
+      - khulnasoft/advocacy
+      - khulnasoft/charts
+      - khulnasoft/client-go
+      - khulnasoft/client-py
+      - khulnasoft/client-rs
+      - khulnasoft/cncf-green-review-testing
+      - khulnasoft/community
+      - khulnasoft/contrib
+      - khulnasoft/dbg-go
+      - khulnasoft/deploy-kubernetes
+      - khulnasoft/driverkit
+      - khulnasoft/ebpf-probe
+      - khulnasoft/elftoolchain
+      - khulnasoft/event-generator
+      - khulnasoft/evolution
+      - khulnasoft/fanal-actions
+      - khulnasoft/fanal-aws-terraform
+      - khulnasoft/fanal-exporter
+      - khulnasoft/fanal-website
+      - khulnasoft/fanalctl
+      - khulnasoft/fanal-playground
+      - khulnasoft/fanal-rustlings
+      - khulnasoft/fanal-talon
+      - khulnasoft/fanal
+      - khulnasoft/fanal-ui
+      - khulnasoft/flycheck-fanal-rules
+      - khulnasoft/k8s-metacollector
+      - khulnasoft/kernel-crawler
+      - khulnasoft/kernel-testing
+      - khulnasoft/kernel-module
+      - khulnasoft/kilt
+      - khulnasoft/libs-sdk-go
+      - khulnasoft/libscap
+      - khulnasoft/libsinsp
+      - khulnasoft/pdig
+      - khulnasoft/peribolos-syncer
+      - khulnasoft/pigeon
+      - khulnasoft/plugin-sdk-cpp
+      - khulnasoft/plugin-sdk-go
+      - khulnasoft/plugin-sdk-rs
+      - khulnasoft/plugins
+      - khulnasoft/rules
+      - khulnasoft/syscalls-bumper
+      - khulnasoft/template-repository
+      - khulnasoft/fanal/test-infra
+      - khulnasoft/testing
+    lgtm_acts_as_approve: true
+    require_self_approval: false
+    commandHelpLink: https://prow.khulnasoft.com/command-help
+  - repos:
+      - khulnasoft/fanal
+      - khulnasoft/libs
+    lgtm_acts_as_approve: true
+    require_self_approval: false
+    commandHelpLink: https://prow.khulnasoft.com/command-help
+    ignore_review_state: true
+
+blunderbuss:
+  max_request_count: 2
+  use_status_availability: true
+
+config_updater:
+  maps:
+    config/config.yaml:
+      name: config
+    config/plugins.yaml:
+      name: plugins
+    config/jobs/**/*.yaml:
+      name: job-config
+      gzip: true
+
+dco:
+  "*":
+    contributing_branch: main
+    contributing_repo: khulnasoft/.github
+
+goose:
+  key_path: /etc/unsplash/honk
+
+label:
+  additional_labels:
+    # Custom kind/* labels for evolution repository
+    - kind/sandbox
+    - kind/incubation
+    - kind/officialsupport
+
+lgtm:
+  - repos:
+      - khulnasoft/.github
+      - khulnasoft/advocacy
+      - khulnasoft/charts
+      - khulnasoft/client-go
+      - khulnasoft/client-py
+      - khulnasoft/client-rs
+      - khulnasoft/cncf-green-review-testing
+      - khulnasoft/community
+      - khulnasoft/contrib
+      - khulnasoft/evolution
+      - khulnasoft/dbg-go
+      - khulnasoft/deploy-kubernetes
+      - khulnasoft/driverkit
+      - khulnasoft/elftoolchain
+      - khulnasoft/event-generator
+      - khulnasoft/fanal
+      - khulnasoft/fanalctl
+      - khulnasoft/fanal
+      - khulnasoft/fanal-ui
+      - khulnasoft/fanal-actions
+      - khulnasoft/fanal-aws-terraform
+      - khulnasoft/fanal-exporter
+      - khulnasoft/fanal-website
+      - khulnasoft/fanal-playground
+      - khulnasoft/fanal-rustlings
+      - khulnasoft/fanal-talon
+      - khulnasoft/flycheck-fanal-rules
+      - khulnasoft/kernel-crawler
+      - khulnasoft/kernel-testing
+      - khulnasoft/kilt
+      - khulnasoft/libs
+      - khulnasoft/libs-sdk-go
+      - khulnasoft/pdig
+      - khulnasoft/peribolos-syncer
+      - khulnasoft/pigeon
+      - khulnasoft/plugins
+      - khulnasoft/plugin-sdk-go
+      - khulnasoft/plugin-sdk-cpp
+      - khulnasoft/plugin-sdk-rs
+      - khulnasoft/rules
+      - khulnasoft/syscalls-bumper
+      - khulnasoft/template-repository
+      - khulnasoft/fanal/test-infra
+      - khulnasoft/testing
+    review_acts_as_lgtm: true
+    store_tree_hash: true
+    trusted_team_for_sticky_lgtm: test-infra-maintainers
+
+repo_milestone:
+  # To obtain the team ID: curl -H "Authorization: token <token>" "https://api.github.com/orgs/khulnasoft/teams"
+  khulnasoft/fanal:
+    maintainers_id: 3770343
+    maintainers_team: fanal-maintainers
+    maintainers_friendly_name: maintainers of khulnasoft/fanal
+  khulnasoft/libs:
+    maintainers_id: 4535471
+    maintainers_team: libs-maintainers
+    maintainers_friendly_name: maintainers of khulnasoft/libs
+  khulnasoft/pdig:
+    maintainers_id: 3832091
+    maintainers_team: pdig-maintainers
+    maintainers_friendly_name: maintainers of khulnasoft/pdig
+  khulnasoft/fanalctl:
+    maintainers_team: fanalctl-maintainers
+    maintainers_friendly_name: maintainers of khulnasoft/fanalctl
+  khulnasoft/plugin-sdk-cpp:
+    maintainers_team: plugin-sdk-cpp-maintainers
+    maintainers_friendly_name: maintainers of khulnasoft/plugin-sdk-cpp
+
+require_matching_label:
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: .github
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: client-go
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: client-py
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: client-rs
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: cncf-green-review-testing
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: community
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this proposal.
+      Whether it refers to an issue or to a PR in [Fanal](https://github.com/khulnasoft/fanal).
+      Please specify it either using `/kind <group>` or manually from the side menu.
+      In case you do not know which kind this proposal is please mention the maintainers using `@team/maintainers`.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: contrib
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: dbg-go
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: deploy-kubernetes
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: driverkit
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: evolution
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: event-generator
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-ui
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-aws-terraform
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-exporter
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanalctl
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-website
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: flycheck-fanal-rules
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: k8s-metacollector
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: kilt
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: plugins
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: rules
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: plugin-sdk-go
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: plugin-sdk-cpp
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: plugin-sdk-rs
+    prs: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this PR.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: libs
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: libs-sdk-go
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: syscalls-bumper
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: peribolos-syncer
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: pigeon
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: testing
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: kernel-crawler
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: kernel-testing
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-playground
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-rustlings
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-talon
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+  - missing_label: needs-kind
+    org: khulnasoft
+    repo: fanal-actions
+    issues: true
+    regexp: ^kind/
+    missing_comment: |
+      There is not a label identifying the kind of this issue.
+      Please specify it either using `/kind <group>` or manually from the side menu.
+
+retitle:
+  allow_closed_issues: true
+
+size:
+  s: 10
+  m: 30
+  l: 90
+  xl: 270
+  xxl: 520
+
+triggers:
+  - repos:
+      - khulnasoft
+    join_org_url: "https://github.com/khulnasoft/.github/blob/main/CONTRIBUTING.md"
+    only_org_members: true
+
+plugins:
+  khulnasoft/.github:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/advocacy:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/charts:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/client-go:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/client-py:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/client-rs:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/cncf-green-review-testing:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/community:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/contrib:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/evolution:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/dbg-go:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/deploy-kubernetes:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/driverkit:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/elftoolchain:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/event-generator:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - milestone
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-ui:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-actions:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-aws-terraform:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-exporter:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanalctl:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - milestone
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-playground:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-rustlings:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-talon:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal-website:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - milestone
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/flycheck-fanal-rules:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/k8s-metacollector:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/kernel-crawler:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/kernel-testing:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/kilt:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/libs:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - milestone
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/libs-sdk-go:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/pdig:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - milestone
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/peribolos-syncer:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/pigeon:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/plugins:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/plugin-sdk-go:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/plugin-sdk-cpp:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - milestone
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/plugin-sdk-rs:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - release-note
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/rules:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - mergecommitblocker
+      - milestone
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/syscalls-bumper:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/template-repository:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+  khulnasoft/fanal/test-infra:
+    plugins:
+      - approve # Allow OWNERS to /approve
+      - assign # Allow /assign and /cc
+      - blunderbuss # Auto-assign people
+      - branchcleaner
+      - cat # /meow replies with cat pictures
+      - config-updater # auto-update config.yaml and plugins.yaml on changes
+      - dco # checks for DCO sign off on commits
+      - dog # /bark replies with dog pictures
+      - goose
+      - help # Support /help and /good-first-issue
+      - hold # Support /hold to delay merge
+      - lifecycle # Allow /lifecycle stale
+      - lgtm # Allow /lgtm
+      - retitle
+      - size # Auto-label size of PR
+      - trigger # Allow people to configure CI jobs to /test
+      - verify-owners # Validates OWNERS file changes in PRs.
+      - welcome # welcomes new PR users
+      - wip # Auto-hold PRs with WIP in title
+  khulnasoft/testing:
+    plugins:
+      - approve
+      - assign
+      - blunderbuss
+      - branchcleaner
+      - cat
+      - dco
+      - dog
+      - golint
+      - goose
+      - help
+      - hold
+      - label
+      - lifecycle
+      - lgtm
+      - require-matching-label
+      - retitle
+      - size
+      - trigger
+      - verify-owners
+      - welcome
+      - wip
+
+external_plugins:
+  khulnasoft/.github:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/advocacy:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/charts:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/client-go:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/client-py:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/client-rs:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/cncf-green-review-testing:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/community:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/contrib:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/dbg-go:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/deploy-kubernetes:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/driverkit:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/elftoolchain:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/evolution:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/event-generator:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-ui:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-actions:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-aws-terraform:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-exporter:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanalctl:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-playground:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-rustlings:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-talon:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal-website:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/flycheck-fanal-rules:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/k8s-metacollector:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/kernel-crawler:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/kernel-testing:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/kilt:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/libs:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/libs-sdk-go:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/pdig:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/peribolos-syncer:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/pigeon:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/plugins:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/plugin-sdk-go:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/plugin-sdk-cpp:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/plugin-sdk-rs:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/rules:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/syscalls-bumper:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/template-repository:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/fanal/test-infra:
+    - name: needs-rebase
+      events:
+        - pull_request
+  khulnasoft/testing:
+    - name: needs-rebase
+      events:
+        - pull_request

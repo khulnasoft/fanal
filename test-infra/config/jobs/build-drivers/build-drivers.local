@@ -1,0 +1,35 @@
+presubmits:
+  khulnasoft/fanal/test-infra:
+  - name: validate-drivers-amazonlinux-presubmit
+    decorate: true
+    skip_report: false
+    agent: kubernetes
+    branches:
+      - ^master$
+    spec:
+      containers:
+      - command:
+        - /workspace/build-drivers.sh
+        - amazonlinux
+        env:
+        - name: DBG_MAKE_BUILD_TARGET
+          value: validate
+        image: localhost:5000/build-drivers
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
+  - name: validate-drivers-amazonlinux2-presubmit
+    decorate: true
+    skip_report: false
+    agent: kubernetes
+    branches:
+      - ^master$
+    spec:
+      containers:
+      - command:
+        - /workspace/build-drivers.sh
+        - amazonlinux2
+        image: localhost:5000/build-drivers
+        imagePullPolicy: Always
+        securityContext:
+          privileged: true
