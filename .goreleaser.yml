@@ -1,0 +1,158 @@
+version: 2
+
+project_name: fanal
+
+env:
+  - GO111MODULE=on
+  - DOCKER_CLI_EXPERIMENTAL=enabled
+  - DOCKER_BUILDKIT=1
+  - BUILDX_PLATFORMS=linux/amd64,linux/arm64,linux/arm/v7
+  - COSIGN_YES=true
+
+snapshot:
+  name_template: 'latest'
+
+checksum:
+  name_template: 'checksums.txt'
+
+# Prevents parallel builds from stepping on each others toes downloading modules
+before:
+  hooks:
+    - go mod tidy
+    - /bin/bash -c 'if [ -n "$(git --no-pager diff --exit-code go.mod go.sum)" ]; then exit 1; fi'
+
+# gomod:
+#   proxy: true
+
+sboms:
+  - artifacts: archive
+
+builds:
+  - id: "fanal"
+    goos:
+      - linux
+    goarch:
+      - amd64
+      - arm64
+      - arm
+    goarm:
+      - '7'
+    asmflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    gcflags:
+      - all=-trimpath={{.Env.GOPATH}}
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -trimpath
+    ldflags:
+      - "{{ .Env.LDFLAGS }}"
+    binary: fanal
+
+dockers:
+  - goos: linux
+    goarch: amd64
+    dockerfile: Dockerfile
+    use: buildx
+    image_templates:
+      - "khulnasoft/fanal:stable-amd64"
+      - "khulnasoft/fanal:{{ .Version }}-amd64"
+      - "docker.io/khulnasoft/fanal:stable-amd64"
+      - "docker.io/khulnasoft/fanal:{{ .Version }}-amd64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--platform=linux/amd64"
+    extra_files:
+      - LICENSE
+
+  - goos: linux
+    goarch: arm64
+    dockerfile: Dockerfile
+    use: buildx
+    image_templates:
+      - "khulnasoft/fanal:stable-arm64"
+      - "khulnasoft/fanal:{{ .Version }}-arm64"
+      - "docker.io/khulnasoft/fanal:stable-arm64"
+      - "docker.io/khulnasoft/fanal:{{ .Version }}-arm64"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--platform=linux/arm64"
+    extra_files:
+      - LICENSE
+
+  - goos: linux
+    goarch: arm
+    goarm: '7'
+    dockerfile: Dockerfile
+    use: buildx
+    image_templates:
+      - "khulnasoft/fanal:stable-armv7"
+      - "khulnasoft/fanal:{{ .Version }}-armv7"
+      - "docker.io/khulnasoft/fanal:stable-armv7"
+      - "docker.io/khulnasoft/fanal:{{ .Version }}-armv7"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--platform=linux/arm/v7"
+    extra_files:
+      - LICENSE
+
+docker_manifests:
+  - name_template: 'khulnasoft/fanal:stable'
+    image_templates:
+      - 'khulnasoft/fanal:stable-amd64'
+      - 'khulnasoft/fanal:stable-arm64'
+      - 'khulnasoft/fanal:stable-armv7'
+  - name_template: 'khulnasoft/fanal:{{ .Version }}'
+    image_templates:
+      - 'khulnasoft/fanal:{{ .Version }}-amd64'
+      - 'khulnasoft/fanal:{{ .Version }}-arm64'
+      - 'khulnasoft/fanal:{{ .Version }}-armv7'
+  - name_template: 'docker.io/khulnasoft/fanal:stable'
+    image_templates:
+      - 'docker.io/khulnasoft/fanal:stable-amd64'
+      - 'docker.io/khulnasoft/fanal:stable-arm64'
+      - 'docker.io/khulnasoft/fanal:stable-armv7'
+  - name_template: 'docker.io/khulnasoft/fanal:{{ .Version }}'
+    image_templates:
+      - 'docker.io/khulnasoft/fanal:{{ .Version }}-amd64'
+      - 'docker.io/khulnasoft/fanal:{{ .Version }}-arm64'
+      - 'docker.io/khulnasoft/fanal:{{ .Version }}-armv7'
+
+signs:
+  - id: fanal
+    signature: "${artifact}.sig"
+    certificate: "${artifact}.pem"
+    cmd: cosign
+    args: ["sign-blob", "--output-signature", "${artifact}.sig", "--output-certificate", "${artifact}.pem", "${artifact}"]
+    artifacts: archive
+  - id: checksum
+    signature: "${artifact}.sig"
+    certificate: "${artifact}.pem"
+    cmd: cosign
+    args: ["sign-blob", "--output-signature", "${artifact}.sig", "--output-certificate", "${artifact}.pem", "${artifact}"]
+    artifacts: checksum
+
+docker_signs:
+  - id: fanal
+    cmd: cosign
+    args: ["sign", "--recursive", "${artifact}"]
+    artifacts: manifests
+    output: true
+
+release:
+  github:
+    owner: khulnasoft
+    name: fanal
+  prerelease: auto

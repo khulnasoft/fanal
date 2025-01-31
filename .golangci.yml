@@ -1,14 +1,24 @@
 run:
-  go: 1.18
-  timeout: 5m
+  deadline: 5m
+issues:
+  exclude-files:
+    - "zz_generated.*\\.go$"
 linters:
+  disable-all: true
   enable:
+    - goconst
     - gofmt
-  disable:
-    - errcheck
-    - gosimple
+    - gosec
     - govet
     - ineffassign
-    - staticcheck
-    - structcheck
-    - unused 
+    - misspell
+    - nakedret
+    - prealloc
+    - unconvert
+    - unused
+  # Run with --fast=false for more extensive checks
+  fast: true
+  include:
+  - EXC0002 # include "missing comments" issues from golint
+  max-issues-per-linter: 0
+  max-same-issues: 0

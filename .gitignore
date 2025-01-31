@@ -10,13 +10,14 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
-.idea
+
+fanal
+/config.yaml
+.env
 .vscode
-main
+.idea
+*.swp
+/hack/tools/bin/*
 
-vendor
-test/integration/testdata/fixtures
-*.tar
-*.gz
-
-/fanal
+tmp/
+dist/

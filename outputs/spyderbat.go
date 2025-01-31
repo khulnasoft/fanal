@@ -1,0 +1,256 @@
+// SPDX-License-Identifier: MIT OR Apache-2.0
+
+package outputs
+
+import (
+	"bytes"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"strings"
+	"time"
+
+	"github.com/DataDog/datadog-go/statsd"
+	"github.com/google/uuid"
+	"go.opentelemetry.io/otel/attribute"
+
+	"github.com/khulnasoft/fanal/internal/pkg/utils"
+	"github.com/khulnasoft/fanal/outputs/otlpmetrics"
+	"github.com/khulnasoft/fanal/types"
+)
+
+const Fanal_ string = "fanal_"
+const SourcePath string = "/source/"
+const APIv1Path string = "api/v1/org/"
+
+func isSourcePresent(config *types.Configuration) (bool, error) {
+
+	client := &http.Client{}
+
+	source_url, err := url.JoinPath(config.Spyderbat.APIUrl, APIv1Path+config.Spyderbat.OrgUID+SourcePath)
+	if err != nil {
+		return false, err
+	}
+	req, err := http.NewRequest("GET", source_url, new(bytes.Buffer))
+	if err != nil {
+		return false, err
+	}
+	req.Header.Add("Authorization", Bearer+" "+config.Spyderbat.APIKey)
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return false, err
+	}
+	if resp.StatusCode != http.StatusOK {
+		return false, errors.New("HTTP error: " + resp.Status)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return false, err
+	}
+	var sources []map[string]interface{}
+	if err := json.Unmarshal(body, &sources); err != nil {
+		return false, err
+	}
+	uid := Fanal_ + config.Spyderbat.OrgUID
+	for _, source := range sources {
+		if id, ok := source["uid"]; ok && id.(string) == uid {
+			return true, nil
+		}
+	}
+	return false, nil
+}
+
+type SourceBody struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	UID         string `json:"uid"`
+}
+
+func makeSource(config *types.Configuration) error {
+
+	data := SourceBody{
+		Name:        config.Spyderbat.Source,
+		Description: config.Spyderbat.SourceDescription,
+		UID:         Fanal_ + config.Spyderbat.OrgUID,
+	}
+	body := new(bytes.Buffer)
+	if err := json.NewEncoder(body).Encode(data); err != nil {
+		return err
+	}
+
+	client := &http.Client{}
+
+	source_url, err := url.JoinPath(config.Spyderbat.APIUrl, APIv1Path+config.Spyderbat.OrgUID+SourcePath)
+	if err != nil {
+		return err
+	}
+	req, err := http.NewRequest("POST", source_url, body)
+	if err != nil {
+		return err
+	}
+	req.Header.Add("Authorization", Bearer+" "+config.Spyderbat.APIKey)
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	if resp.StatusCode != http.StatusOK {
+		if resp.StatusCode == http.StatusBadRequest {
+			if b, err := io.ReadAll(resp.Body); err == nil {
+				return errors.New("Bad request: " + string(b))
+			}
+		}
+		return errors.New("HTTP error: " + resp.Status)
+	}
+	defer resp.Body.Close()
+
+	return nil
+}
+
+const Schema = "khulnasoft_alert::1.0.0"
+
+var PriorityMap = map[types.PriorityType]string{
+	types.Emergency:     "critical",
+	types.Alert:         "high",
+	types.Critical:      "critical",
+	types.Error:         "high",
+	types.Warning:       "medium",
+	types.Notice:        "low",
+	types.Informational: "info",
+	types.Debug:         "info",
+}
+
+type spyderbatPayload struct {
+	Schema        string   `json:"schema"`
+	ID            string   `json:"id"`
+	MonotonicTime int      `json:"monotonic_time"`
+	OrcTime       float64  `json:"orc_time"`
+	Time          float64  `json:"time"`
+	PID           int32    `json:"pid"`
+	Level         string   `json:"level"`
+	Message       []string `json:"msg"`
+	Arguments     string   `json:"args"`
+	Container     string   `json:"container"`
+}
+
+func newSpyderbatPayload(khulnasoftpayload types.KhulnasoftPayload) (spyderbatPayload, error) {
+	nowTime := float64(time.Now().UnixNano()) / 1000000000
+
+	timeStr := khulnasoftpayload.OutputFields["evt.time"]
+	if timeStr == nil {
+		errStr := fmt.Sprintf("evt.time is nil for rule %s", khulnasoftpayload.Rule)
+		return spyderbatPayload{}, errors.New(errStr)
+	}
+	jsonTime, err := timeStr.(json.Number).Int64()
+	if err != nil {
+		return spyderbatPayload{}, err
+	}
+	eventTime := float64(jsonTime / 1000000000.0)
+
+	pidStr := khulnasoftpayload.OutputFields["proc.pid"]
+	if pidStr == nil {
+		errStr := fmt.Sprintf("proc.pid is nil for rule %s", khulnasoftpayload.Rule)
+		return spyderbatPayload{}, errors.New(errStr)
+	}
+	pid, err := pidStr.(json.Number).Int64()
+	if err != nil {
+		return spyderbatPayload{}, err
+	}
+
+	level := PriorityMap[khulnasoftpayload.Priority]
+	args := strings.Split(khulnasoftpayload.Output, " ")
+	var message []string
+	if len(args) > 2 {
+		message = args[2:]
+	}
+	arguments := khulnasoftpayload.OutputFields["proc.cmdline"].(string)
+	container := khulnasoftpayload.OutputFields["container.id"].(string)
+
+	return spyderbatPayload{
+		Schema:        Schema,
+		ID:            uuid.NewString(),
+		MonotonicTime: time.Now().Nanosecond(),
+		OrcTime:       nowTime,
+		Time:          eventTime,
+		PID:           int32(pid), //nolint:gosec // disable G115
+		Level:         level,
+		Message:       message,
+		Arguments:     arguments,
+		Container:     container,
+	}, nil
+}
+
+func NewSpyderbatClient(config *types.Configuration, stats *types.Statistics, promStats *types.PromStatistics,
+	otlpMetrics *otlpmetrics.OTLPMetrics, statsdClient, dogstatsdClient *statsd.Client) (*Client, error) {
+
+	hasSource, err := isSourcePresent(config)
+	if err != nil {
+		utils.Log(utils.ErrorLvl, "Spyderbat", err.Error())
+		return nil, ErrClientCreation
+	}
+	if !hasSource {
+		if err := makeSource(config); err != nil {
+			if hasSource, err2 := isSourcePresent(config); err2 != nil || !hasSource {
+				utils.Log(utils.ErrorLvl, "Spyderbat", err.Error())
+				return nil, ErrClientCreation
+			}
+		}
+	}
+
+	source := Fanal_ + config.Spyderbat.OrgUID
+	data_url, err := url.JoinPath(config.Spyderbat.APIUrl, APIv1Path+config.Spyderbat.OrgUID+SourcePath+source+"/data/sb-agent")
+	if err != nil {
+		utils.Log(utils.ErrorLvl, "Spyderbat", err.Error())
+		return nil, ErrClientCreation
+	}
+	endpointURL, err := url.Parse(data_url)
+	if err != nil {
+		utils.Log(utils.ErrorLvl, "Spyderbat", err.Error())
+		return nil, ErrClientCreation
+	}
+	return &Client{
+		OutputType:      "Spyderbat",
+		EndpointURL:     endpointURL,
+		cfg:             types.CommonConfig{MutualTLS: false, CheckCert: true, MaxConcurrentRequests: 1},
+		ContentType:     "application/ndjson",
+		Config:          config,
+		Stats:           stats,
+		PromStats:       promStats,
+		OTLPMetrics:     otlpMetrics,
+		StatsdClient:    statsdClient,
+		DogstatsdClient: dogstatsdClient,
+	}, nil
+}
+
+func (c *Client) SpyderbatPost(khulnasoftpayload types.KhulnasoftPayload) {
+	c.Stats.Spyderbat.Add(Total, 1)
+
+	payload, err := newSpyderbatPayload(khulnasoftpayload)
+	if err == nil {
+		err = c.Post(payload, func(req *http.Request) {
+			req.Header.Set("Authorization", "Bearer "+c.Config.Spyderbat.APIKey)
+			req.Header.Set("Content-Encoding", "gzip")
+		})
+	}
+	if err != nil {
+		go c.CountMetric(Outputs, 1, []string{"output:spyderbat", "status:error"})
+		c.Stats.Spyderbat.Add(Error, 1)
+		c.PromStats.Outputs.With(map[string]string{"destination": "spyderbat", "status": Error}).Inc()
+		c.OTLPMetrics.Outputs.With(attribute.String("destination", "spyderbat"),
+			attribute.String("status", Error)).Inc()
+		utils.Log(utils.ErrorLvl, c.OutputType, err.Error())
+		return
+	}
+
+	go c.CountMetric(Outputs, 1, []string{"output:spyderbat", "status:ok"})
+	c.Stats.Spyderbat.Add(OK, 1)
+	c.PromStats.Outputs.With(map[string]string{"destination": "spyderbat", "status": OK}).Inc()
+	c.OTLPMetrics.Outputs.With(attribute.String("destination", "spyderbat"),
+		attribute.String("status", OK)).Inc()
+}
