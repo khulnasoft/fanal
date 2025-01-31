@@ -1,6 +1,6 @@
 # Fanal-ui
 
-[![KhulnaSoft Ecosystem Repository](https://github.com/khulnasoft/evolution/blob/main/repos/badges/falco-ecosystem-blue.svg)](https://github.com/khulnasoft/evolution/blob/main/REPOSITORIES.md#ecosystem-scope) [![Incubating](https://img.shields.io/badge/status-incubating-orange?style=for-the-badge)](https://github.com/khulnasoft/evolution/blob/main/REPOSITORIES.md#incubating)
+[![KhulnaSoft Ecosystem Repository](https://github.com/khulnasoft/evolution/blob/main/repos/badges/fanal-ecosystem-blue.svg)](https://github.com/khulnasoft/evolution/blob/main/REPOSITORIES.md#ecosystem-scope) [![Incubating](https://img.shields.io/badge/status-incubating-orange?style=for-the-badge)](https://github.com/khulnasoft/evolution/blob/main/REPOSITORIES.md#incubating)
 
 
 ![release](https://flat.badgen.net/github/release/khulnasoft/fanal/ui/latest?color=green) ![last commit](https://flat.badgen.net/github/last-commit/khulnasoft/fanal/ui) ![licence](https://flat.badgen.net/badge/license/Apache/blue) ![docker pulls](https://flat.badgen.net/docker/pulls/khulnasoft/fanal/ui?icon=docker)

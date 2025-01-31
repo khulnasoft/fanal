@@ -1,0 +1,34 @@
+name: Deploy Prow
+
+on:
+  push:
+    branches: [master]
+    paths: ['test-infra/**']
+
+concurrency:
+  group: master-CI
+  cancel-in-progress: false
+
+jobs:
+  deploy-terraform-prow:
+    permissions:
+      id-token: write
+      contents: read
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout test-infra ⤵️
+        uses: actions/checkout@v4
+      
+      - name: Configure AWS credentials 🔧⚙️
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: "arn:aws:iam::292999226676:role/github_actions-test-infra-cluster"
+          aws-region: eu-west-1
+          
+      - name: Deploy prow
+        env:
+          PROW_HMAC_TOKEN: ${{ secrets.PROW_HMAC_TOKEN }}
+          PROW_OAUTH_TOKEN: ${{ secrets.PROW_OAUTH_TOKEN }}
+          PROW_SERVICE_ACCOUNT_JSON: ${{ secrets.PROW_SERVICE_ACCOUNT_JSON }}
+        run: |
+          ./tools/deploy_prow.sh

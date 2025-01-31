@@ -19,7 +19,7 @@
 | ------------------------------ | ------------------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `policyreport.enabled`         | `POLICYREPORT_ENABLED`         |                  | If true; policyreport output is **enabled**                                                                                         |
 | `policyreport.kubeconfig`      | `POLICYREPORT_KUBECONFIG`      | `~/.kube/config` | Kubeconfig file to use (only if fanal is running outside the cluster)                                                       |
-| `policyreport.khulnasoftnamespace`  | `POLICYREPORT_FALCONAMESPACE`  |                  | Set the namespace where Khulnasoft is running (only if fanal is running outside the cluster)                                     |
+| `policyreport.khulnasoftnamespace`  | `POLICYREPORT_FANALNAMESPACE`  |                  | Set the namespace where Khulnasoft is running (only if fanal is running outside the cluster)                                     |
 | `policyreport.maxevents`       | `POLICYREPORT_MAXEVENTS`       | `1000`           | The max number of events that can be in a policyreport                                                                              |
 | `policyreport.minimumpriority` | `POLICYREPORT_MINIMUMPRIORITY` | `""` (= `debug`) | Minimum priority of event for using this output, order is `emergency,alert,critical,error,warning,notice,informational,debug or ""` |
 

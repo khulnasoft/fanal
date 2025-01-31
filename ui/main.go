@@ -120,7 +120,7 @@ func init() {
 // @description    Fanal UI
 // @contact.name   KhulnaSoftaSoft Authors
 // @contact.url    https://github.com/khulnasoft
-// @contact.email  cncf-falco-dev@lists.cncf.io
+// @contact.email  cncf-fanal-dev@lists.cncf.io
 // @license.name   Apache 2.0
 // @license.url    http://www.apache.org/licenses/LICENSE-2.0.html
 // @accept         json

@@ -33,7 +33,7 @@ const docTemplate = `{
         "contact": {
             "name": "KhulnaSoftaSoft Authors",
             "url": "https://github.com/khulnasoft",
-            "email": "cncf-falco-dev@lists.cncf.io"
+            "email": "cncf-fanal-dev@lists.cncf.io"
         },
         "license": {
             "name": "Apache 2.0",

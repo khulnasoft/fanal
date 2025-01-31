@@ -117,7 +117,7 @@ definitions:
 host: <your-domain>:2802
 info:
   contact:
-    email: cncf-falco-dev@lists.cncf.io
+    email: cncf-fanal-dev@lists.cncf.io
     name: KhulnaSoft Authors
     url: https://github.com/khulnasoft
   description: Fanal UI

@@ -402,7 +402,7 @@ export default {
       )
         .then((response) => {
           text = JSON.stringify(response.data.results);
-          const filename = 'falco_events.json';
+          const filename = 'fanal_events.json';
           const element = document.createElement('a');
           const href = `data:application/json;charset=utf-8,${encodeURIComponent(text)}`;
           element.setAttribute('href', href);

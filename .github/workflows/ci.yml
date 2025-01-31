@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [master]
+
+# Checks if any concurrent jobs under the same pull request or branch are being executed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  manifests-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout test-infra ⤵️
+        uses: actions/checkout@v4
+
+      - name: Download kubeconform ⛓️
+        run: |
+          wget https://github.com/yannh/kubeconform/releases/download/v0.6.6/kubeconform-linux-amd64.tar.gz
+          tar -xvf kubeconform-linux-amd64.tar.gz
+          chmod +x kubeconform
+        
+      - name: yaml config validation 🔍
+        run: ./kubeconform -ignore-filename-pattern ".json" -ignore-missing-schemas -verbose config/prow/
+        
+  scan-terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout test-infra ⤵️
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.19
+
+      - name: Install deps
+        run: |
+          curl -L "$(curl -Ls https://api.github.com/repos/accurics/terrascan/releases/latest | grep -o -E "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz
+          tar -xf terrascan.tar.gz
+          install terrascan /usr/local/bin
+        
+      - name: Scan terrafrom code
+        run: |
+          terrascan scan -i terraform -d config/clusters -v \
+              --skip-rules 'AC_AWS_0214,AC_AWS_0369,AC_AWS_0487,AC_AWS_078,AWS.CloudTrail.Logging.Medium.007,AC_AWS_0447,AC_AWS_0497,AC_AWS_0458,AC_AWS_0320'      
+        
