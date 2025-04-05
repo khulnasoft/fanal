@@ -79,8 +79,9 @@ test:
 	$(GO) test ${TEST_FLAGS} ./...
 
 .PHONY: test-coverage
-test-coverage:
-	$(GO) test ./outputs -count=1 -cover -v ./...
+test-coverage: ## Generate test coverage report for all packages
+	$(GO) test -coverprofile=coverage.out ./...
+	$(GO) tool cover -html=coverage.out
 
 ## --------------------------------------
 ## Linting
@@ -90,6 +91,7 @@ test-coverage:
 lint: $(GOLANGCI_LINT) ## Lint codebase
 	$(GOLANGCI_LINT) run -v
 
+.PHONY: lint-full
 lint-full: $(GOLANGCI_LINT) ## Run slower linters to detect possible issues
 	$(GOLANGCI_LINT) run -v --fast=false
 
@@ -116,3 +118,12 @@ $(GOLANGCI_LINT): ## Build golangci-lint from tools folder.
 clean:
 	rm -rf hack/tools/bin
 	rm -rf dist
+
+## --------------------------------------
+## Development
+## --------------------------------------
+
+.PHONY: deps-update
+deps-update: ## Update all dependencies and tidy go.mod
+	$(GO) get -u ./...
+	$(GO) mod tidy
